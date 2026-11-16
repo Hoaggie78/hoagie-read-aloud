@@ -1,0 +1,30 @@
+# Copy to my-book/book.yaml (scripts/1_setup.sh does it) and edit. Everything about YOUR video lives in my-book/.
+
+title: My Read-Aloud
+
+# One entry per page (or spread), in reading order. "image" is a file in my-book/pages/.
+# "starts_with" = the first few words the reader says on that page, exactly as they say them.
+# The kit finds that moment in the recording for you. The first page starts at the beginning of the video.
+pages:
+  - image: 01.jpg
+    starts_with: ""                     # leave empty for the first page
+  - image: 02.jpg
+    starts_with: "once upon a time"
+  - image: 03.jpg
+    starts_with: "the next morning"
+
+# Where the reader sits on the 16:9 picture.
+reader:
+  side: right            # right or left
+  height: 0.62           # share of the picture height
+
+# Read-along words at the bottom. The word being spoken is highlighted.
+captions:
+  enabled: true
+  words_per_card: 6
+  # Words Whisper mishears, and what to show instead (names mostly). Lower case on the left.
+  fix:
+    sams: "Sam's"
+
+# Slow drift across each page so a still picture feels alive. 0 turns it off.
+page_motion: 0.06

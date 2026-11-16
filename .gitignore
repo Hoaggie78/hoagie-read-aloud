@@ -1,0 +1,11 @@
+# your own material never goes in git
+my-book/
+*.onnx
+*.mp4
+*.mov
+*.MOV
+*.wav
+.env
+.venv*/
+__pycache__/
+.DS_Store
