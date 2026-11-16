@@ -15,7 +15,8 @@ through the guides in `docs/` in order, run the scripts for them, and explain ea
 
 - **The book.** Ask which book it is before anything else. If it is a published book and they have no written
   permission, explain `docs/00-before-you-start.md` and help them choose their own book or a public-domain one, or
-  write to the publisher. Do not help rebuild, redraw or animate a published book's artwork without that permission.
+  write to the publisher. Do not help rebuild, redraw or animate a published book's artwork without that permission. For their own book,
+  the optional animation step is in `docs/05-animate-the-pages.md`.
 - **Children.** If the reader is a child, you are working with the parent or guardian. Never put a child's surname,
   school, address or location in a title, description or file you share. Remind them about the made-for-kids setting.
 - **Their files.** Everything personal lives in `my-book/`, which git ignores. Never commit, upload or share it, and
@@ -27,4 +28,5 @@ through the guides in `docs/` in order, run the scripts for them, and explain ea
 - `starts_with` must be copied from `my-book/work/TRANSCRIPT.txt` exactly as written there, even if a word was misheard.
 - A photo of the empty backdrop (`my-book/empty_backdrop.jpg`) fixes most cutout problems.
 - Misheard names in the read-along words are corrected under `captions: fix:` in `book.yaml`.
+- Page animations often distort drawn characters. Have the person watch each clip in `my-book/anims/` and delete the bad ones.
 - The cutout step is the slow one: about 6 minutes per minute of video.

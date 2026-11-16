@@ -12,6 +12,8 @@ pages:
     starts_with: "once upon a time"
   - image: 03.jpg
     starts_with: "the next morning"
+    # optional: make this page move (docs/05-animate-the-pages.md)
+    # animate: "wind blows through the trees, clouds drift slowly"
 
 # Where the reader sits on the 16:9 picture.
 reader:

@@ -39,8 +39,6 @@ Keep Shorts under 60 seconds.
 - Nothing personal is visible or said.
 - For a children's channel, the video is marked as made for kids.
 
-## What this kit does not do
+## Want the pages to move?
 
-The channel this came from also animated some pages with a video model and rebuilt page art with an image model. Those
-steps are not included: they need more hardware, and changing a published book's artwork needs the publisher's
-permission. A slow drift across your own page photos does most of the work.
+See `docs/05-animate-the-pages.md`. It is optional, slower, and needs a Mac with 64 GB of memory.

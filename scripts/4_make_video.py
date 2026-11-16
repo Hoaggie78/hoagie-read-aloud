@@ -22,9 +22,25 @@ if cp.get("enabled", True) and not font: stop("no bold font found for the read-a
 # --- page area and reader area
 if short: PX, PY, PW, PH = 0, 0, W, int(H * 0.40); RH = int(H * 0.49); CAPBOX = (60, PH + 16, W - 60, PH + 196)   # page on top, words in the middle, reader below
 else: PX, PY, PW, PH = 0, 0, W, H; RH = int(H * float(rd.get("height", 0.62))); CAPBOX = ((60, H - 250, int(W * 0.62), H - 50) if side == "right" else (int(W * 0.38), H - 250, W - 60, H - 50))
-art = {}
+art = {}; anim = {}
+def moving(p, t):
+    """If my-book/anims/<page>.mp4 exists, play it forwards then backwards (so the loop has no jump), filling the page area."""
+    f = ME / "anims" / (Path(p["image"]).stem + ".mp4")
+    if p["image"] not in anim:
+        fr = []
+        if f.exists():
+            c = av.open(str(f)); rate = float(c.streams.video[0].average_rate)
+            for x in c.decode(video=0):
+                im = x.to_image().convert("RGB"); s = max(PW / im.width, PH / im.height); im = im.resize((round(im.width * s), round(im.height * s)), Image.BILINEAR)
+                l, u = (im.width - PW) // 2, (im.height - PH) // 2; fr.append(im.crop((l, u, l + PW, u + PH)))
+            c.close(); fr = (fr, rate)
+        anim.clear(); anim[p["image"]] = fr                      # keep only the current page's frames in memory
+    if not anim[p["image"]]: return None
+    fr, rate = anim[p["image"]]; k = int((t - p["start"]) * rate) % (2 * len(fr) - 2); return fr[k if k < len(fr) else 2 * len(fr) - 2 - k]
 def page_at(t):
     p = next((p for p in pages if p["start"] <= t < p["end"]), pages[-1])
+    m_ = moving(p, t)
+    if m_ is not None: return m_
     if p["image"] not in art:
         im = ImageOps.exif_transpose(Image.open(ME / "pages" / p["image"])).convert("RGB"); m = 1 + float(C.get("page_motion", 0.06)); s = max(PW * m / im.width, PH * m / im.height)
         art[p["image"]] = im.resize((round(im.width * s), round(im.height * s)), Image.LANCZOS)
